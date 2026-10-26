@@ -1,0 +1,5 @@
+Supplied Sneha Hair Oil promotional images are included in this folder.
+sneha-product-main.jpeg is the supplied brand poster used as the current product visual.
+sneha-poster-*.jpeg are selected promotional artwork from the uploaded ZIPs.
+Additional set1-*.jpeg and set2-*.jpeg files preserve all images from both ZIP archives.
+For a polished final site, add clean isolated bottle photos and replace poster imagery in the hero/product cards.

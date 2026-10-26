@@ -1,0 +1,16 @@
+﻿"use client";
+import Image from "next/image";
+import { MessageCircle, ArrowUpRight } from "lucide-react";
+import { useLanguage } from "@/components/LanguageProvider";
+import { products, whatsappUrl } from "@/data/site";
+
+export default function ProductsPage() {
+  const { t } = useLanguage();
+  return <>
+    <section className="page-hero"><div className="site-container"><span className="eyebrow">The product collection</span><h1>{t.products}</h1><p>Explore Sneha Hair Oil and contact our team for current bottle sizes, ingredients, pricing and availability.</p></div></section>
+    <section className="section"><div className="site-container grid gap-7 sm:grid-cols-2 xl:grid-cols-4">
+      {products.map((p)=><article className="card group" key={p.id}><div className="relative h-[320px] bg-[#f3e4c8]"><Image src={p.image} alt={p.name} fill className="object-cover transition duration-500 group-hover:scale-[1.025]"/><span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-xs font-extrabold text-[#078b43]">{p.tag}</span></div><div className="p-6"><h2 className="text-xl font-bold text-[#4b2819]">{p.name}</h2><p className="mt-3 leading-7 text-[#786b60]">{p.description}</p><p className="mt-4 text-sm font-semibold text-[#8b7b6b]">{p.size}</p><a href={whatsappUrl(`Hello Sneha Hair Oil, please share the current price, available sizes and product details for ${p.name}.`)} target="_blank" rel="noreferrer" className="btn btn-primary mt-6 w-full"><MessageCircle size={17}/>{t.enquire}<ArrowUpRight size={16}/></a></div></article>)}
+    </div><p className="site-container mt-8 text-sm leading-6 text-[#786b60]">Product information and bottle sizes shown here are placeholders until confirmed by the brand. Please contact us for the current product label and availability.</p></section>
+  </>;
+}
+

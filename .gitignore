@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+build
+.env*
+.DS_Store
+
+# Local backups and nested project
+*.bak
+*.before-*-fix.bak
+src-encoding-backup-20261026-192836/
+sneha-hair-oil-nextjs/
+
+# Archive files
+*.zip

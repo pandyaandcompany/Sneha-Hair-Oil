@@ -1,0 +1,53 @@
+export const business = {
+  brand: "Sneha",
+  productName: "Sneha Ayurvedic Hair Oil",
+  tagline: "All in One Hair Oil",
+  whatsapp: "9624139539",
+  phone: "9724783077",
+  contactName: "Vaidh Pankaj Prajapati",
+  email: "vaidhpankaj1986@gmail.com",
+  village: "Village Tarasara, Ta. Talaja, Dist. Bhavnagar, Gujarat",
+  headOffice: "Satkar Medical Hall, Tilak Chowk, Talaja",
+  instagram: "sneha ayurvedic hair oil",
+  facebook: "sneha hair oil",
+  gstin: "24CCOPR9653L1ZO"
+};
+
+export const productImages = [
+  { src: "/products/sneha-product-main.jpeg", alt: "Sneha Ayurvedic Hair Oil bottles" },
+  { src: "/products/sneha-poster-ingredients.jpeg", alt: "Sneha Hair Oil ingredients poster" },
+  { src: "/products/sneha-poster-benefits.jpeg", alt: "Sneha Hair Oil product benefits poster" },
+  { src: "/products/sneha-poster-routine.jpeg", alt: "Sneha Hair Oil usage and routine poster" },
+  { src: "/products/sneha-poster-21-days.jpeg", alt: "Sneha Hair Oil promotional poster" }
+];
+
+export const products = [
+  {
+    id: "all-in-one",
+    name: "Sneha All in One Hair Oil",
+    description: "The signature Sneha hair-oil product, presented in the original branded bottle.",
+    image: productImages[0].src,
+    size: "Bottle sizes to be confirmed",
+    tag: "Signature Product"
+  },
+  {
+    id: "herbal-care",
+    name: "Sneha Herbal Hair Care",
+    description: "Explore the brand's herbal hair-care approach and ingredient story.",
+    image: productImages[1].src,
+    size: "Contact us for availability",
+    tag: "Herbal Care"
+  },
+  {
+    id: "daily-care",
+    name: "Sneha Daily Hair Care",
+    description: "Ask our team for product details, usage guidance and current availability.",
+    image: productImages[2].src,
+    size: "Contact us for availability",
+    tag: "Everyday Care"
+  }
+];
+
+export function whatsappUrl(message: string) {
+  return `https://wa.me/91${business.whatsapp}?text=${encodeURIComponent(message)}`;
+}

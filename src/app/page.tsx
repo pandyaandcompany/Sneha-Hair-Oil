@@ -1,0 +1,106 @@
+﻿"use client";
+
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Leaf, HeartHandshake, Sprout, ShieldCheck, MessageCircle, Sparkles } from "lucide-react";
+import { motion } from "framer-motion";
+import SectionHeading from "@/components/SectionHeading";
+import { useLanguage } from "@/components/LanguageProvider";
+import { productImages, products, whatsappUrl } from "@/data/site";
+
+export default function HomePage() {
+  const { t } = useLanguage();
+  return <>
+    <section className="relative bg-[radial-gradient(circle_at_82%_20%,#e0edcf_0,transparent_29%),linear-gradient(115deg,#fbf4e5_0%,#fffdf8_53%,#f1ead9_100%)]">
+      <div className="site-container grid min-h-[650px] items-center gap-10 py-12 lg:grid-cols-[1.05fr_.95fr] lg:py-16">
+        <motion.div initial={{ opacity: 0, y: 22 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .55 }} className="relative z-10">
+          <span className="eyebrow">{t.brandLine}</span>
+          <h1 className="mt-5 max-w-2xl font-serif text-[clamp(2.5rem,6vw,5rem)] font-bold leading-[1.08] tracking-[-.035em] break-words text-[#4b2819]">{t.heroTitle}</h1>
+          <p className="mt-6 max-w-xl text-lg leading-8 text-[#756457]">{t.heroBody}</p>
+          <div className="mt-8 flex flex-wrap gap-3">
+            <Link href="/products" className="btn btn-primary">{t.viewProducts}<ArrowRight size={18}/></Link>
+            <a href={whatsappUrl("Hello Sneha Hair Oil, please share product details and pricing.")} target="_blank" rel="noreferrer" className="btn btn-light"><MessageCircle size={18}/>{t.enquire}</a>
+          </div>
+          <div className="mt-9 flex flex-wrap gap-x-6 gap-y-3 text-sm font-semibold text-[#5f5146]">
+            <span className="flex items-center gap-2"><Leaf size={17} className="text-[#078b43]"/>Herbal-inspired care</span>
+            <span className="flex items-center gap-2"><HeartHandshake size={17} className="text-[#078b43]"/>Direct brand enquiries</span>
+          </div>
+        </motion.div>
+        <motion.div initial={{ opacity: 0, scale: .96 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: .65, delay: .12 }} className="relative mx-auto w-full max-w-[560px]">
+          <div className="absolute inset-5 rounded-[42%_58%_54%_46%] bg-[#d9e8cc] rotate-[-7deg]"/>
+          <div className="absolute -right-1 top-8 h-24 w-24 rounded-full border border-[#c8a65f]/70"/>
+          <div className="relative overflow-hidden rounded-[30px] border border-white/70 bg-[#f3e4c8] p-3 shadow-[0_28px_80px_rgba(74,42,20,.16)]">
+            <Image src={productImages[0].src} alt={productImages[0].alt} width={900} height={1200} priority className="h-auto max-h-[540px] w-full rounded-[22px] object-contain object-center"/>
+            <div className="absolute bottom-4 left-4 right-4 rounded-2xl border border-white/70 bg-white/90 p-3 backdrop-blur-md sm:bottom-7 sm:left-8 sm:right-8 sm:p-4">
+              <span className="text-xs font-extrabold uppercase tracking-[.16em] text-[#078b43]">{t.madeFor}</span>
+              <p className="mt-1 text-xl font-bold text-[#4b2819]">Sneha All in One Hair Oil</p>
+            </div>
+          </div>
+          <div className="absolute -left-5 top-14 hidden rounded-2xl bg-white p-4 shadow-lg sm:block"><Sprout className="text-[#078b43]" size={25}/><p className="mt-2 text-xs font-bold text-[#4b2819]">Herbal-inspired</p><p className="text-xs text-[#8a7b6d]">Hair care</p></div>
+        </motion.div>
+      </div>
+    </section>
+
+    <section className="section">
+      <div className="site-container">
+        <SectionHeading eyebrow="The Sneha collection" title={t.signature} description={t.signatureBody}/>
+        <div className="grid gap-6 md:grid-cols-3">
+          {products.map((product, index) => <motion.article key={product.id} initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: index * .08 }} className="card group">
+            <div className="relative h-64 overflow-hidden bg-[#f5ead5]">
+              <Image src={product.image} alt={product.name} fill className="object-cover transition duration-500 group-hover:scale-[1.03]"/>
+              <span className="absolute left-4 top-4 rounded-full bg-white/90 px-3 py-1.5 text-xs font-extrabold text-[#078b43]">{product.tag}</span>
+            </div>
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-[#4b2819]">{product.name}</h3>
+              <p className="mt-3 min-h-[72px] text-sm leading-6 text-[#786b60]">{product.description}</p>
+              <p className="mt-2 text-xs font-semibold text-[#8b7b6b]">{product.size}</p>
+              <a href={whatsappUrl(`Hello Sneha Hair Oil, I am interested in ${product.name}. Please share details and price.`)} target="_blank" rel="noreferrer" className="mt-5 inline-flex items-center gap-2 font-bold text-[#078b43] hover:gap-3">{t.enquire}<ArrowRight size={16}/></a>
+            </div>
+          </motion.article>)}
+        </div>
+        <div className="mt-8 text-center"><Link href="/products" className="btn btn-light">{t.explore}<ArrowRight size={17}/></Link></div>
+      </div>
+    </section>
+
+    <section className="bg-[#f7f1e5] py-20">
+      <div className="site-container">
+        <SectionHeading eyebrow="The Sneha approach" title={t.whyTitle} description={t.whyBody}/>
+        <div className="grid gap-5 md:grid-cols-3">
+          {[
+            { icon: Leaf, title: "Herbal-inspired identity", text: "A hair-care brand rooted in an appreciation for botanical traditions." },
+            { icon: ShieldCheck, title: "Clear product information", text: "Ask our team about the current label, ingredients, sizes and directions." },
+            { icon: HeartHandshake, title: "A direct connection", text: "Get product information and availability directly from the Sneha team." }
+          ].map((item) => <div key={item.title} className="rounded-2xl border border-[#e9dcc6] bg-white/80 p-7">
+            <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#e9f3e5] text-[#078b43]"><item.icon size={24}/></div>
+            <h3 className="text-lg font-bold text-[#4b2819]">{item.title}</h3><p className="mt-3 text-sm leading-7 text-[#786b60]">{item.text}</p>
+          </div>)}
+        </div>
+      </div>
+    </section>
+
+    <section className="section">
+      <div className="site-container grid items-center gap-10 lg:grid-cols-2">
+        <div className="relative overflow-hidden rounded-[28px] bg-[#f4e5c8] p-3">
+          <Image src={productImages[1].src} alt="Sneha Hair Oil ingredient information poster" width={1000} height={700} className="h-[360px] w-full rounded-[20px] object-cover sm:h-[430px]"/>
+        </div>
+        <div>
+          <span className="eyebrow">Know your product</span>
+          <h2 className="mt-4 font-serif text-4xl font-bold leading-tight text-[#4b2819]">{t.ingredientsTitle}</h2>
+          <p className="mt-5 leading-8 text-[#786b60]">{t.ingredientsBody}</p>
+          <Link href="/ingredients" className="btn btn-primary mt-7">{t.learnMore}<ArrowRight size={17}/></Link>
+        </div>
+      </div>
+    </section>
+
+    <section className="pb-20">
+      <div className="site-container overflow-hidden rounded-[30px] bg-[#62351f] px-7 py-12 text-center text-white sm:px-14 sm:py-16">
+        <Sparkles className="mx-auto mb-4 text-[#e6c879]" size={30}/>
+        <h2 className="mx-auto max-w-3xl font-serif text-3xl font-bold leading-tight sm:text-5xl">{t.contactTitle}</h2>
+        <p className="mx-auto mt-5 max-w-2xl leading-7 text-white/75">{t.contactBody}</p>
+        <a href={whatsappUrl("Hello Sneha Hair Oil, I would like to enquire about your products.")} target="_blank" rel="noreferrer" className="btn btn-primary mt-7"><MessageCircle size={18}/>{t.enquire}</a>
+      </div>
+    </section>
+  </>;
+}
+
+
